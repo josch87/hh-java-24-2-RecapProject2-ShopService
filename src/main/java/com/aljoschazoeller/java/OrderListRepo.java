@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class OrderListRepo {
+public class OrderListRepo implements OrderRepo {
     private List<Order> orders = new ArrayList<>();
 
     public Order addOrder(String customer, List<Product> products) {
