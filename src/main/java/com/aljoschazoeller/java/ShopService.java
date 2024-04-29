@@ -3,8 +3,11 @@ package com.aljoschazoeller.java;
 import java.util.List;
 
 public class ShopService {
+    private ProductRepo productRepo = new ProductRepo();
+    private OrderRepo orderRepo = new OrderMapRepo();
+
     public void placeNewOrder(String customer, List<Product> products) {
-        ProductRepo productRepo = new ProductRepo();
+
         List<Product> availableProducts = productRepo.getProducts();
         for (Product product : products) {
             if (!availableProducts.contains(product)) {
@@ -12,8 +15,6 @@ public class ShopService {
                 throw new IllegalArgumentException("Product \"" + product.name() + "\" is not available");
             }
         }
-
-        OrderListRepo orderListRepo = new OrderListRepo();
-        orderListRepo.addOrder(customer, products);
+        orderRepo.addOrder(customer, products);
     }
 }
