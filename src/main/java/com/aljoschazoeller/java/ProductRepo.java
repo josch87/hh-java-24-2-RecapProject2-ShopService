@@ -3,15 +3,42 @@ package com.aljoschazoeller.java;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ProductRepo {
     List<Product> products = new ArrayList<>();
 
-    public void addProduct(String name, BigDecimal price) {
+    public Product addProduct(String name, BigDecimal price) {
         Product newProduct = new Product(name, price);
         products.add(newProduct);
         System.out.println("Added new product \"" + name + "\" to the products.");
+        return newProduct;
     }
+
+    public void removeProduct(UUID uuidToRemove) {
+        boolean isRemoved = products.removeIf(product -> product.id().equals(uuidToRemove));
+        if (isRemoved) {
+            System.out.println("Removed product with UUID " + uuidToRemove);
+        } else {
+            System.out.println("Product with UUID " + uuidToRemove + " not found.");
+        }
+    }
+
+    public Product getProduct(UUID uuidToGet) {
+        for (Product product : products) {
+            if (product.id().equals(uuidToGet)) {
+                return product;
+            } else {
+                throw new RuntimeException("Could not find product with UUID " + uuidToGet);
+            }
+        }
+        return null;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
 
     @Override
     public String toString() {
