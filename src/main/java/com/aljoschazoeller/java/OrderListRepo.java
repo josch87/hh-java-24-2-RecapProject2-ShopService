@@ -20,7 +20,7 @@ public class OrderListRepo {
             System.out.println("Removed order with UUID " + uuidToRemove);
         } else {
             System.out.println("Order with UUID " + uuidToRemove + " not found.");
-            throw new RuntimeException("Could not remove order with UUID " + uuidToRemove);
+            throw new IllegalArgumentException("Could not remove order with UUID " + uuidToRemove);
         }
     }
 
@@ -30,7 +30,7 @@ public class OrderListRepo {
                 return order;
             }
         }
-        throw new RuntimeException(("Could not find order with UUID " + uuidToGet));
+        throw new IllegalArgumentException(("Could not find order with UUID " + uuidToGet));
     }
 
     public List<Order> getOrders() {
