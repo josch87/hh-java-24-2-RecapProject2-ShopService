@@ -21,6 +21,7 @@ public class ProductRepo {
             System.out.println("Removed product with UUID " + uuidToRemove);
         } else {
             System.out.println("Product with UUID " + uuidToRemove + " not found.");
+            throw new RuntimeException("Could not remove order with UUID " + uuidToRemove);
         }
     }
 
@@ -28,11 +29,10 @@ public class ProductRepo {
         for (Product product : products) {
             if (product.id().equals(uuidToGet)) {
                 return product;
-            } else {
-                throw new RuntimeException("Could not find product with UUID " + uuidToGet);
             }
+
         }
-        return null;
+        throw new RuntimeException("Could not find product with UUID " + uuidToGet);
     }
 
     public List<Product> getProducts() {
