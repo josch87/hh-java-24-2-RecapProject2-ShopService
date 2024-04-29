@@ -32,4 +32,8 @@ public class OrderListRepo {
         }
         throw new RuntimeException(("Could not find order with UUID " + uuidToGet));
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 }
