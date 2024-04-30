@@ -26,25 +26,58 @@ public class Main {
 //
 //        System.out.println("All products: " + productRepo.getProducts());
 
-        ProductRepo myWarehouseProducts = new ProductRepo();
-        myWarehouseProducts.addProduct("Nivea Creme", new BigDecimal("9.95"));
-        myWarehouseProducts.addProduct("Smoothie (Apfel, Mango, Maracuja)", new BigDecimal("0.65"));
-        myWarehouseProducts.addProduct("Shampoo & Spülung Twinpack Sunny Side", new BigDecimal("1.55"));
+//        ProductRepo myWarehouseProducts = new ProductRepo();
+//        myWarehouseProducts.addProduct("Nivea Creme", new BigDecimal("9.95"));
+//        myWarehouseProducts.addProduct("Smoothie (Apfel, Mango, Maracuja)", new BigDecimal("0.65"));
+//        myWarehouseProducts.addProduct("Shampoo & Spülung Twinpack Sunny Side", new BigDecimal("1.55"));
+//        System.out.println("myWarehouseProducts: " + myWarehouseProducts);
+//
+//        ProductRepo rewe = new ProductRepo();
+//        rewe.addProduct("Toilet Paper", new BigDecimal("3.99"));
+//        rewe.addProduct("Hand Sanitizer", new BigDecimal("5.99"));
+//        rewe.addProduct("Face Mask", new BigDecimal("1.99"));
+//        System.out.println("Rewe: " + rewe);
+
+        System.out.println("-------- myListShop --------");
 
         OrderRepo orderListRepo = new OrderListRepo();
-        OrderRepo orderMapRepo = new OrderMapRepo();
-
         ShopService myListShop = new ShopService(orderListRepo);
-        ShopService myMapShop = new ShopService(orderMapRepo);
+
+
+        Product toiletPaper = myListShop.addProductToWarehouse("Toilet Paper", new BigDecimal("3.99"));
+        Product faceMask = myListShop.addProductToWarehouse("Face Mask", new BigDecimal("1.99"));
+        System.out.println("toiletPaper: " + toiletPaper);
 
         System.out.println("myListShop: " + myListShop);
-        System.out.println("myMapShop: " + myMapShop);
 
         List<Product> aljoschasShoppingCard = new ArrayList<>();
-        aljoschasShoppingCard.add(new Product("Nivea Creme", new BigDecimal("9.95")));
+        aljoschasShoppingCard.add(toiletPaper);
+        aljoschasShoppingCard.add(toiletPaper);
 
         myListShop.placeNewOrder("Aljoscha Zöller", aljoschasShoppingCard);
         System.out.println("myListShop after first order: " + myListShop);
 
+
+        System.out.println("-------- myMapShop --------");
+
+        OrderRepo orderMapRepo = new OrderMapRepo();
+        ShopService myMapShop = new ShopService(orderMapRepo);
+        System.out.println("myMapShop: " + myMapShop);
+
+        Product nivea = myMapShop.addProductToWarehouse("Nivea Creme", new BigDecimal("9.95"));
+        Product smoothie = myMapShop.addProductToWarehouse("Smoothie (Apfel, Mango, Maracuja)", new BigDecimal("0.65"));
+        Product shampoo = myMapShop.addProductToWarehouse("Shampoo & Spülung Twinpack Sunny Side", new BigDecimal("1.55"));
+        System.out.println("myMapShop: " + myMapShop);
+
+        List<Product> benjaminsShoppingCard = new ArrayList<>();
+        benjaminsShoppingCard.add(shampoo);
+        myMapShop.placeNewOrder("Benjamin Blümchen", benjaminsShoppingCard);
+
+        List<Product> karlasShoppingCard = new ArrayList<>();
+        karlasShoppingCard.add(nivea);
+        karlasShoppingCard.add(shampoo);
+        myMapShop.placeNewOrder("Karla Kolumna", karlasShoppingCard);
+
+        System.out.println("myMapShop after two orders: " + myMapShop);
     }
 }

@@ -15,24 +15,24 @@ public class ProductRepo {
         return newProduct;
     }
 
-    public void removeProduct(UUID uuidToRemove) {
-        boolean isRemoved = products.removeIf(product -> product.id().equals(uuidToRemove));
+    public void removeProduct(UUID idToRemove) {
+        boolean isRemoved = products.removeIf(product -> product.id().equals(idToRemove));
         if (isRemoved) {
-            System.out.println("Removed product with UUID " + uuidToRemove);
+            System.out.println("Removed product with ID " + idToRemove);
         } else {
-            System.out.println("Product with UUID " + uuidToRemove + " not found.");
-            throw new IllegalArgumentException("Could not remove order with UUID " + uuidToRemove);
+            System.out.println("Product with ID " + idToRemove + " not found.");
+            throw new IllegalArgumentException("Could not remove order with ID " + idToRemove);
         }
     }
 
-    public Product getProduct(UUID uuidToGet) {
+    public Product getProduct(UUID idToGet) {
         for (Product product : products) {
-            if (product.id().equals(uuidToGet)) {
+            if (product.id().equals(idToGet)) {
                 return product;
             }
 
         }
-        throw new IllegalArgumentException("Could not find product with UUID " + uuidToGet);
+        throw new IllegalArgumentException("Could not find product with ID " + idToGet);
     }
 
     public List<Product> getProducts() {

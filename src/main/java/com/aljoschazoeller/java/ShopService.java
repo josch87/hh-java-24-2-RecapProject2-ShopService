@@ -1,5 +1,6 @@
 package com.aljoschazoeller.java;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ShopService {
@@ -10,8 +11,8 @@ public class ShopService {
         this.orderRepo = orderRepo;
     }
 
-    public void addProduct(Product newProduct) {
-        productRepo.addProduct(newProduct.name(), newProduct.price());
+    public Product addProductToWarehouse(String name, BigDecimal price) {
+        return productRepo.addProduct(name, price);
     }
 
     public void placeNewOrder(String customer, List<Product> products) {

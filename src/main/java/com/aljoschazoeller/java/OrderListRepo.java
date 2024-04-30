@@ -11,30 +11,30 @@ public class OrderListRepo implements OrderRepo {
     public Order addOrder(String customer, List<Product> products) {
         Order newOrder = new Order(customer, products);
         orders.add(newOrder);
-        System.out.println("Placed new order with UUID " + newOrder.uuid() + " in list of OrderListRepo.");
+        System.out.println("Placed new order with ID " + newOrder.id() + " in list of OrderListRepo.");
         return newOrder;
     }
 
     @Override
-    public void removeOrder(UUID uuidToRemove) {
-        boolean isRemoved = orders.removeIf(order -> order.uuid().equals(uuidToRemove));
+    public void removeOrder(UUID idToRemove) {
+        boolean isRemoved = orders.removeIf(order -> order.id().equals(idToRemove));
         if (isRemoved) {
-            System.out.println("Removed order with UUID " + uuidToRemove + " from list of OrderListRepo.");
+            System.out.println("Removed order with ID " + idToRemove + " from list of OrderListRepo.");
         } else {
-            System.out.println("Order with UUID " + uuidToRemove + " not found in list of OrderListRepo.");
-            throw new IllegalArgumentException("Order with UUID " + uuidToRemove + " not found in list of OrderListRepo.");
+            System.out.println("Order with ID " + idToRemove + " not found in list of OrderListRepo.");
+            throw new IllegalArgumentException("Order with ID " + idToRemove + " not found in list of OrderListRepo.");
         }
     }
 
     @Override
-    public Order getOrder(UUID uuidToGet) {
+    public Order getOrder(UUID idToGet) {
         for (Order order : orders) {
-            if (order.uuid().equals(uuidToGet)) {
+            if (order.id().equals(idToGet)) {
                 return order;
             }
         }
-        System.out.println("Could not find order with UUID \" + uuidToGet + \" in list of OrderListRepo.");
-        throw new IllegalArgumentException(("Could not find order with UUID " + uuidToGet + " in list of OrderListRepo."));
+        System.out.println("Could not find order with ID \" + idToGet + \" in list of OrderListRepo.");
+        throw new IllegalArgumentException(("Could not find order with ID " + idToGet + " in list of OrderListRepo."));
     }
 
     @Override
