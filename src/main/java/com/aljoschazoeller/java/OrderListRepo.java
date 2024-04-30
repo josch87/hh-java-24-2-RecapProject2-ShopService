@@ -8,7 +8,7 @@ public class OrderListRepo implements OrderRepo {
     private List<Order> orders = new ArrayList<>();
 
     @Override
-    public Order addOrder(String customer, List<Product> products) {
+    public Order addOrder(String customer, ProductRepo products) {
         Order newOrder = new Order(customer, products);
         orders.add(newOrder);
         System.out.println("Placed new order with UUID " + newOrder.uuid() + " in list.");
@@ -39,5 +39,12 @@ public class OrderListRepo implements OrderRepo {
     @Override
     public List<Order> getOrders() {
         return orders;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderListRepo{" +
+                "orders=" + orders +
+                '}';
     }
 }

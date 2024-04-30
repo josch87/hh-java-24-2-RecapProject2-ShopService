@@ -6,7 +6,7 @@ public class OrderMapRepo implements OrderRepo {
     private Map<UUID, Order> orders = new HashMap<>();
 
     @Override
-    public Order addOrder(String customer, List<Product> products) {
+    public Order addOrder(String customer, ProductRepo products) {
         Order newOrder = new Order(customer, products);
         orders.put(newOrder.uuid(), newOrder);
         System.out.println("Placed new order with UUID " + newOrder.uuid() + " in map.");
@@ -38,5 +38,12 @@ public class OrderMapRepo implements OrderRepo {
     @Override
     public List<Order> getOrders() {
         return new ArrayList<>(orders.values());
+    }
+
+    @Override
+    public String toString() {
+        return "OrderMapRepo{" +
+                "orders=" + orders +
+                '}';
     }
 }
