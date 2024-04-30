@@ -1,6 +1,8 @@
 package com.aljoschazoeller.java;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,10 +26,10 @@ public class Main {
 //
 //        System.out.println("All products: " + productRepo.getProducts());
 
-        ProductRepo myProducts = new ProductRepo();
-        myProducts.addProduct("Nivea Creme", new BigDecimal("9.95"));
-        myProducts.addProduct("Smoothie (Apfel, Mango, Maracuja)", new BigDecimal("0.65"));
-        myProducts.addProduct("Shampoo & Spülung Twinpack Sunny Side", new BigDecimal("1.55"));
+        ProductRepo myWarehouseProducts = new ProductRepo();
+        myWarehouseProducts.addProduct("Nivea Creme", new BigDecimal("9.95"));
+        myWarehouseProducts.addProduct("Smoothie (Apfel, Mango, Maracuja)", new BigDecimal("0.65"));
+        myWarehouseProducts.addProduct("Shampoo & Spülung Twinpack Sunny Side", new BigDecimal("1.55"));
 
         OrderRepo orderListRepo = new OrderListRepo();
         OrderRepo orderMapRepo = new OrderMapRepo();
@@ -38,7 +40,11 @@ public class Main {
         System.out.println("myListShop: " + myListShop);
         System.out.println("myMapShop: " + myMapShop);
 
-        myListShop.placeNewOrder("Aljoscha Zöller", myProducts);
+        List<Product> aljoschasShoppingCard = new ArrayList<>();
+        aljoschasShoppingCard.add(new Product("Nivea Creme", new BigDecimal("9.95")));
+
+        myListShop.placeNewOrder("Aljoscha Zöller", aljoschasShoppingCard);
+        System.out.println("myListShop after first order: " + myListShop);
 
     }
 }
